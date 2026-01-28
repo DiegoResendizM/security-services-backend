@@ -76,10 +76,4 @@ Despliegue en servidor (Render, Railway, Heroku, Azure, etc.)
 Cualquier duda, abran un Issue en el repositorio o contáctenme directamente.
 Desarrollado por: Diego Resendiz M.
 Última actualización: Enero 2026
-text### ¿Qué hacer después?
-1. Copia el texto de arriba → crea/actualiza `README.md` en tu carpeta.
-2. Sube los cambios:
-   ```bash
-   git add README.md
-   git commit -m "Agrega README.md profesional con guía completa"
-   git push
+
