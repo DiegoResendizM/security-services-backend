@@ -1,79 +1,103 @@
-# Security Services Management API
+# 🔐 Backend de Seguridad Electrónica – Spring Boot
 
-API backend para la gestión de servicios de seguridad en alcaldías, clientes, prioridades, categorías y tipos de servicio. Desarrollada con **Spring Boot** y **SQL Server Express**.
+Proyecto backend desarrollado en **Java con Spring Boot**, enfocado en simular un sistema básico de **seguridad electrónica**, donde se reciben y registran eventos provenientes de sensores o dispositivos de seguridad.
 
-## Tecnologías utilizadas
+Este proyecto tiene fines **educativos** y busca demostrar la integración entre **programación backend** y **conceptos de seguridad electrónica**.
 
-- Spring Boot 3.2.1
-- Spring Web
+---
+
+## 🧠 Escenario simulado
+
+El sistema representa un entorno donde dispositivos de seguridad (por ejemplo):
+
+- Sensores de movimiento (PIR)
+- Sensores de apertura de puerta
+- Alarmas
+- Cámaras (solo eventos, no video)
+
+envían **eventos** a un servidor central para su **registro y análisis**.
+
+Cada evento queda almacenado en una base de datos para:
+- Auditoría
+- Historial de incidentes
+- Monitoreo básico
+
+---
+
+## ⚙️ Tecnologías utilizadas
+
+- Java
+- Spring Boot
 - Spring Data JPA
-- Microsoft SQL Server (JDBC driver)
-- Hibernate (ORM)
-- Swagger / OpenAPI (documentación interactiva)
-- Lombok
+- Base de datos H2 (en memoria)
 - Maven
+- Git / GitHub
 
-## Requisitos para correr localmente
+---
 
-- Java 17 (o superior)
-- Maven (viene incluido con el wrapper `mvnw`)
-- SQL Server Express con instancia `SQLEXPRESS01` y usuario `sa` habilitado
+## 📂 Estructura del proyecto
 
-## Configuración
+src/main/java/com/seguridad
+├── controller -> Controladores REST
+├── model -> Entidades (Eventos)
+├── repository -> Acceso a datos
+└── SeguridadApplication.java
 
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/DiegoResendizM/security-services-backend.git
-   cd services-management
 
-Configura la conexión a la base de datos en src/main/resources/application.properties:propertiesspring.datasource.url=jdbc:sqlserver://localhost\\SQLEXPRESS01;databaseName=tu_base_de_datos;encrypt=true;trustServerCertificate=true
-spring.datasource.username=sa
-spring.datasource.password=tu_contraseñaNota: Nunca subas la contraseña real. Usa variables de entorno en producción.
-Ejecuta la aplicación:Bashmvnw.cmd clean spring-boot:run(En Linux/Mac: ./mvnw clean spring-boot:run)
+---
 
-La API estará disponible en:
+## 🚀 Cómo ejecutar el proyecto
+
+### Requisitos
+- Java JDK
+- Maven (o usar el wrapper incluido)
+
+### Ejecutar
+
+```bash
+./mvnw spring-boot:run
+
+El backend se inicia en:
+
 http://localhost:8080
-Documentación interactiva (Swagger)
-Mientras la aplicación esté corriendo, abre en tu navegador:
-http://localhost:8080/swagger-ui.html
-Aquí puedes ver y probar todos los endpoints, ver ejemplos de JSON y hacer peticiones directamente.
-Endpoints principales (CRUD completo para Services)
-MétodoEndpointDescripciónEjemplo de body JSON (POST/PUT)GET/api/servicesLista todos los servicios—GET/api/services/{id}Obtiene un servicio por ID—POST/api/servicesCrea un nuevo servicioVer ejemplo abajoPUT/api/services/{id}Actualiza un servicioVer ejemplo abajoDELETE/api/services/{id}Elimina un servicio—
-Ejemplo de JSON para POST / PUT:
-JSON{
-  "alcaldiaId": 1,
-  "clientId": 1,
-  "priorityId": 1,
-  "scheduledDate": "2026-02-15",
-  "serviceCategoryId": 1,
-  "serviceTypeId": 1,
-  "status": "PENDIENTE"
+
+🗄️ Consola H2
+
+La base de datos H2 se utiliza para pruebas y aprendizaje.
+
+    URL: http://localhost:8080/h2-console
+
+    JDBC URL: jdbc:h2:mem:testdb
+
+    Usuario: sa
+
+    Contraseña: (vacía)
+
+📡 Ejemplo de evento recibido
+
+Ejemplo de evento enviado al sistema:
+
+{
+  "tipo": "MOVIMIENTO",
+  "ubicacion": "Entrada principal",
+  "descripcion": "Movimiento detectado fuera de horario"
 }
-Estructura del proyecto
-textservices-management/
-├── src/
-│   ├── main/
-│   │   ├── java/com/security/service/
-│   │   │   ├── controller/     → Controladores REST
-│   │   │   ├── service/        → Lógica de negocio
-│   │   │   ├── repository/     → Interfaces JPA
-│   │   │   ├── model/          → Entidades JPA
-│   │   │   └── dto/            → DTOs (Request/Response)
-│   │   └── resources/
-│   │       └── application.properties  → Configuración
-│   └── test/                   → Tests
-├── pom.xml                     → Dependencias y configuración Maven
-└── README.md                   → Esta guía
-Próximos pasos / Mejoras pendientes
 
-Agregar autenticación (JWT o Basic Auth)
-CRUD completo para entidades relacionadas (Clients, Alcaldías, Priorities, etc.)
-Validaciones con @Valid y manejo global de errores
-Tests unitarios e integrados
-Despliegue en servidor (Render, Railway, Heroku, Azure, etc.)
+Este evento queda almacenado en la base de datos para su consulta posterior.
+💼 Aplicación en la vida real
 
-¡Bienvenidos!
-Cualquier duda, abran un Issue en el repositorio o contáctenme directamente.
-Desarrollado por: Diego Resendiz M.
-Última actualización: Enero 2026
+En un entorno real, este backend podría integrarse con:
 
+    Paneles de alarma
+
+    Sistemas de control de acceso
+
+    NVR / DVR
+
+    Sistemas SCADA o IoT
+
+Permitiendo centralizar eventos de seguridad en un solo sistema.
+📌 Autor
+
+Proyecto desarrollado por Diego Reséndiz
+Con fines educativos y de aprendizaje en backend y seguridad electrónica.
